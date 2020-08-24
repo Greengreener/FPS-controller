@@ -1,0 +1,44 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+//[RequireComponent(typeof(Rigidbody))]
+public class Movement : MonoBehaviour
+{
+    [Header("Physics")]
+    public float gravity = 20f;
+    public Rigidbody controller;
+    [Header("Movement Variables")]
+    public float speed = 5f;
+    public float jumpSpeed = 8f;
+    public Vector3 moveDirection;
+
+    void Update()
+    {
+        float horizontal = 0;
+        float vertical = 0;
+        if (Input.GetKey(KeyCode.W))
+        {
+            vertical++;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            vertical--;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            horizontal++;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            horizontal--;
+        }
+        moveDirection = transform.TransformDirection(new Vector3(horizontal, 0, vertical));
+        moveDirection *= speed;
+        if (Input.GetKey(KeyCode.Space))
+        {
+            moveDirection.y = jumpSpeed;
+        }
+        this.gameObject.transform.Translate(moveDirection * Time.deltaTime);
+    }
+}
