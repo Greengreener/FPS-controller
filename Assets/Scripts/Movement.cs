@@ -6,7 +6,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Header("Physics")]
-    public float gravity = 20f;
+    //public float gravity = 20f;
     public Rigidbody controller;
     [Header("Movement Variables")]
     public float speed = 5f;
@@ -33,12 +33,12 @@ public class Movement : MonoBehaviour
         {
             horizontal--;
         }
-        moveDirection = transform.TransformDirection(new Vector3(horizontal, 0, vertical));
-        moveDirection *= speed;
+        moveDirection = new Vector3(horizontal, 0, vertical);
+        //moveDirection *= speed;
         if (Input.GetKey(KeyCode.Space))
         {
             moveDirection.y = jumpSpeed;
         }
-        this.gameObject.transform.Translate(moveDirection * Time.deltaTime);
+        this.gameObject.transform.Translate((moveDirection * speed * Time.deltaTime));
     }
 }

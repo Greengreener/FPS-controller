@@ -31,14 +31,10 @@ public class Gun : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButton("Fire1") && clip > 0)
-        {
-            Shoot();
-        }
         if (Input.GetKeyDown(KeyCode.R) && ammo > 0)
         {
             int amountIntoClip;
-             
+
             if (clip != clipMax)
             {
                 amountIntoClip = clipMax - clip;
@@ -55,14 +51,25 @@ public class Gun : MonoBehaviour
                         clip += ammo;
                         ammo = 0;
                     }
-                    
-                }  
+
+                }
                 if (ammo <= 0)
                 {
                     ammo = 0;
                 }
             }
             UIUpdate();
+        }
+    }
+    void FixedUpdate()
+    {
+        if (Input.GetButton("Fire1") && clip > 0)
+        {
+            Shoot();
+        }
+        if(Input.GetButton("Fire1") && clip == 0)
+        {
+            Debug.Log("*click click click*");
         }
     }
     void Shoot()
@@ -73,7 +80,7 @@ public class Gun : MonoBehaviour
         Target target;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
-            target = hit.transform.GetComponent<Target>();
+            target = hit.transform.GetComponentInParent<Target>();
 
             Debug.Log(hit.ToString());
             if (target != null)

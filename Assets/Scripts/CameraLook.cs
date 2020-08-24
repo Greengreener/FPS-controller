@@ -17,7 +17,10 @@ public class CameraLook : MonoBehaviour
     private float _rotY;
     void Start()
     {
+        //Lock the cursor
         Cursor.lockState = CursorLockMode.Locked;
+        //Hide the cursor
+        Cursor.visible = false;
         if (GetComponent<Camera>())
         {
             axis = RotationalAxis.MouseY;
