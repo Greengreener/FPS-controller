@@ -13,6 +13,13 @@ public class Movement : MonoBehaviour
     public float jumpSpeed = 8f;
     public Vector3 moveDirection;
 
+    public Animator animator;
+    public int movementAnim;
+
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
     void Update()
     {
         float horizontal = 0;
@@ -40,5 +47,18 @@ public class Movement : MonoBehaviour
             moveDirection.y = jumpSpeed;
         }
         this.gameObject.transform.Translate((moveDirection * speed * Time.deltaTime));
+        if (moveDirection.x <= 0.1 || moveDirection.z <= 0.1)
+        {
+            animator.SetFloat(movementAnim, 1);
+        }
+        if (moveDirection.x >= -0.1 || moveDirection.z >= -0.1)
+        {
+            animator.SetFloat(movementAnim, 1);
+        }
+        if(moveDirection.x == 0 && moveDirection.z == 0)
+        {
+            animator.SetFloat(movementAnim, 0);
+        }
+        
     }
 }

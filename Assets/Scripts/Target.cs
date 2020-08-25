@@ -6,6 +6,7 @@ public class Target : MonoBehaviour
 {
     public float health;
     public GameObject[] bodyParts = new GameObject[7];
+    public GameObject box;
 
     private void Awake()
     {
@@ -33,6 +34,12 @@ public class Target : MonoBehaviour
             }
             Debug.Log("Killed");
             //Destroy(gameObject);
+            if(box != null)
+            {
+                Rigidbody rbBox = box.GetComponent<Rigidbody>();
+                rbBox.useGravity = true;
+                
+            }
         }
     }
 }
