@@ -19,9 +19,12 @@ public class Gun : MonoBehaviour
     public string gunName;
     public Text currentGun;
 
+    public Animator animator;
+
     public Camera fpsCamera;
     void Start()
     {
+        animator = GetComponent<Animator>();
         clip = clipMax;
         ammo = ammoMax;
         fpsCamera = Camera.main;
@@ -65,11 +68,17 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && clip > 0)
         {
+            animator.SetBool("Shooting", true);
             Shoot();
         }
         if(Input.GetButton("Fire1") && clip == 0)
         {
+            animator.SetBool("Shooting", false);
             Debug.Log("*click click click*");
+        }
+        else
+        {
+            animator.SetBool("Shooting", false);
         }
     }
     void Shoot()

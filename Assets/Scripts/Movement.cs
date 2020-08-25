@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
     {
         float horizontal = 0;
         float vertical = 0;
+        
         if (Input.GetKey(KeyCode.W))
         {
             vertical++;
@@ -47,18 +48,7 @@ public class Movement : MonoBehaviour
             moveDirection.y = jumpSpeed;
         }
         this.gameObject.transform.Translate((moveDirection * speed * Time.deltaTime));
-        if (moveDirection.x <= 0.1 || moveDirection.z <= 0.1)
-        {
-            animator.SetFloat(movementAnim, 1);
-        }
-        if (moveDirection.x >= -0.1 || moveDirection.z >= -0.1)
-        {
-            animator.SetFloat(movementAnim, 1);
-        }
-        if(moveDirection.x == 0 && moveDirection.z == 0)
-        {
-            animator.SetFloat(movementAnim, 0);
-        }
-        
+        animator.SetFloat("Speed", Mathf.Abs(moveDirection.x));
+        animator.SetFloat("ForwardSpeed", Mathf.Abs(moveDirection.z));
     }
 }
