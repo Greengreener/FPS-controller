@@ -98,7 +98,7 @@ public class Gun : MonoBehaviour
             }
             if (target.health <= 0)
             {
-                Rigidbody rb =  target.GetComponent<Rigidbody>();
+                Rigidbody rb =  hit.rigidbody.GetComponent<Rigidbody>();
                 rb.AddForceAtPosition(hit.point * 10,hit.normal);
             }
             else
