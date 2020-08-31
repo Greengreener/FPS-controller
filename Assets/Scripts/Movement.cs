@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     public Rigidbody controller;
     [Header("Movement Variables")]
     public float speed = 5f;
-    public float jumpSpeed = 8f;
+    public float jumpSpeed = 50f;
     public Vector3 moveDirection;
 
     public Animator animator;
@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
         }
         moveDirection = new Vector3(horizontal, 0, vertical);
         //moveDirection *= speed;
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             moveDirection.y = jumpSpeed;
         }
