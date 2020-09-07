@@ -22,6 +22,7 @@ public class Gun : MonoBehaviour
     public Animator animator;
 
     public Camera fpsCamera;
+    Vector3 _currentShootPos;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -68,6 +69,7 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && clip > 0)
         {
+            _currentShootPos = fpsCamera.transform.position;
             animator.SetBool("Shooting", true);
             Shoot();
         }
@@ -99,7 +101,7 @@ public class Gun : MonoBehaviour
             if (target.health <= 0)
             {
                 Rigidbody rb =  hit.rigidbody.GetComponent<Rigidbody>();
-                rb.AddForceAtPosition(hit.point * 10,hit.normal);
+                rb.AddForceAtPosition((hit.point - fpsCamera.transform.position) * 100,hit.transform.position);
             }
             else
             {
@@ -108,7 +110,7 @@ public class Gun : MonoBehaviour
         }
         else { Debug.Log("BigMiss"); }
     }
-    void UIUpdate()
+    public void UIUpdate()
     {
         clipText.text = ("Clip: ") + clip;
         ammoText.text = ("Ammo: ") + ammo;

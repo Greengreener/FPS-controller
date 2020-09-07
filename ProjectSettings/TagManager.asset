@@ -8,6 +8,9 @@ TagManager:
   - Metal
   - ExplosiveBarrel
   - Ground
+  - Flag
+  - RedFlagBase
+  - BlueFlagBase
   layers:
   - Default
   - TransparentFX

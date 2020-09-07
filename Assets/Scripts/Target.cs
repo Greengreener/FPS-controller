@@ -38,7 +38,6 @@ public class Target : MonoBehaviour
             {
                 Rigidbody rbBox = box.GetComponent<Rigidbody>();
                 rbBox.useGravity = true;
-                
             }
         }
     }
