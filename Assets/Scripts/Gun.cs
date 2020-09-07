@@ -101,7 +101,7 @@ public class Gun : MonoBehaviour
             if (target.health <= 0)
             {
                 Rigidbody rb =  hit.rigidbody.GetComponent<Rigidbody>();
-                rb.AddForceAtPosition((hit.point - fpsCamera.transform.position) * 100,hit.transform.position);
+                rb.AddForceAtPosition((hit.point - fpsCamera.transform.position) * damage,hit.transform.position);
             }
             else
             {
