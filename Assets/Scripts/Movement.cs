@@ -7,10 +7,10 @@ public class Movement : MonoBehaviour
 {
     [Header("Physics")]
     //public float gravity = 20f;
-    public Rigidbody controller;
+    Rigidbody rb;
     [Header("Movement Variables")]
-    public float speed = 50f;
-    public float jumpSpeed = 50f;
+    float speed = 500;
+    float jumpSpeed = 5f;
     public Vector3 moveDirection;
 
     public Animator animator;
@@ -18,9 +18,10 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
     }
-    void FixedUpdate()
+    private void Update()
     {
         float horizontal = 0;
         float vertical = 0;
@@ -42,15 +43,12 @@ public class Movement : MonoBehaviour
             horizontal--;
         }
         moveDirection = new Vector3(horizontal, 0, vertical);
-        this.gameObject.transform.Translate((moveDirection * speed * Time.deltaTime));
+        rb.AddRelativeForce(moveDirection * speed * Time.deltaTime, ForceMode.Force);
         animator.SetFloat("Speed", Mathf.Abs(moveDirection.x));
         animator.SetFloat("ForwardSpeed", Mathf.Abs(moveDirection.z));
-    }
-    private void Update()
-    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            controller.AddRelativeForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+            rb.AddRelativeForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
         }
     }
 }
