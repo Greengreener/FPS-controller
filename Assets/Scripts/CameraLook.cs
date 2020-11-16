@@ -15,12 +15,7 @@ public class CameraLook : MonoBehaviour
     public float sensetivity = 100;
     public float minY = -60, maxY = 60;
     private float _rotY;
-<<<<<<< HEAD
 
-    // private Light torch;
-    // bool torchOnOff;
-=======
->>>>>>> parent of 5627986... 1vs1Greybox
     void Start()
     {
         //Lock the cursor
@@ -31,24 +26,11 @@ public class CameraLook : MonoBehaviour
         {
             axis = RotationalAxis.MouseY;
         }
-<<<<<<< HEAD
-        // torch = GetComponentInChildren<Light>();
-        // torch.gameObject.SetActive(false);
-        // torchOnOff = !torch.gameObject.activeSelf;
 
     }
+    
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.F))
-        // {
-        //     torch.gameObject.SetActive(torchOnOff);
-        //     torchOnOff = !torchOnOff;
-        // }
-=======
-    }
-    void Update()
-    {
->>>>>>> parent of 5627986... 1vs1Greybox
         if (axis == RotationalAxis.MouseX)
         {
             transform.Rotate(0, Input.GetAxis("Mouse X") * sensetivity * Time.deltaTime, 0);
